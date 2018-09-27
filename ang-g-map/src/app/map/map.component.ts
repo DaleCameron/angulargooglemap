@@ -12,7 +12,8 @@ export class MapComponent implements OnInit {
   @ViewChild('gmap') mapElement: any;
 
   map: google.maps.Map;
-  here = {lat: 38.650122, lng: -90.559314}
+  here = {lat: 38.650122, lng: -90.559314};
+  message = '';
 
   constructor() { }
 
@@ -26,6 +27,9 @@ export class MapComponent implements OnInit {
   }
   showMarker(): void {
     const marker = new google.maps.Marker({position: this.here , map: this.map});
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({address: '3 tanyard ct ofallon, mo 63368'},
+                                      (results, status) => { console.log(results); console.log(status); console.log(results[0].geometry.location.lat()); console.log(results[0].geometry.location.lng()); });
   }
 
 }
